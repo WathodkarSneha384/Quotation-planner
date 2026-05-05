@@ -10,6 +10,10 @@ type Props = {
 };
 
 export function QuotationPreview({ data, rootId = "quotation-preview-root", className = "" }: Props) {
+  const gstDisplay =
+    SHREE_SALES_DETAILS.gstNo && SHREE_SALES_DETAILS.gstNo !== "ADD_GST_NUMBER_HERE"
+      ? SHREE_SALES_DETAILS.gstNo
+      : "-";
   const lineSum = data.lineItems.reduce((s, li) => s + li.lineTotal, 0);
   const gross = quotationGrossSubtotal({
     lineItems: data.lineItems.map((l) => ({ unitPrice: l.unitPrice, quantity: l.quantity })),
@@ -44,23 +48,22 @@ export function QuotationPreview({ data, rootId = "quotation-preview-root", clas
       id={rootId}
       className={`print-root rounded-lg border border-slate-200 bg-white p-8 text-slate-900 shadow-sm ${className}`}
     >
-      <header className="border-b border-slate-300 pb-4 text-center">
-        <h1 className="text-2xl font-bold tracking-wide">{SHREE_SALES_DETAILS.name}</h1>
-        <p className="mt-1 text-sm leading-relaxed">
-          {SHREE_SALES_DETAILS.addressLine1}
-          <br />
-          Contact No: {SHREE_SALES_DETAILS.contactNo}
-          {SHREE_SALES_DETAILS.gstNo && SHREE_SALES_DETAILS.gstNo !== "ADD_GST_NUMBER_HERE" ? (
-            <>
-              <br />
-              GST No: {SHREE_SALES_DETAILS.gstNo}
-            </>
-          ) : null}
+      <header className="border-b-2 border-slate-300 pb-4 text-center">
+        <h1 className="text-[30px] font-bold tracking-wide">{SHREE_SALES_DETAILS.name}</h1>
+        <p className="mt-1 text-[13px] leading-relaxed text-slate-700">{SHREE_SALES_DETAILS.addressLine1}</p>
+        <p className="mt-1 text-[13px] text-slate-700">
+          Contact No: {SHREE_SALES_DETAILS.contactNo} | GST No: {gstDisplay}
         </p>
-        {data.quotationNumber && (
-          <p className="mt-3 text-xs text-slate-600">Quotation No: {data.quotationNumber}</p>
-        )}
-        <p className="text-xs text-slate-600">Date: {data.dateLabel}</p>
+        <div className="mt-3 flex items-center justify-center gap-2 text-[12px] text-slate-700">
+          {data.quotationNumber ? (
+            <span className="rounded border border-slate-300 bg-slate-50 px-2 py-1">
+              Quotation No: <span className="font-semibold text-slate-900">{data.quotationNumber}</span>
+            </span>
+          ) : null}
+          <span className="rounded border border-slate-300 bg-slate-50 px-2 py-1">
+            Date: <span className="font-semibold text-slate-900">{data.dateLabel}</span>
+          </span>
+        </div>
       </header>
 
       <section className="mt-6 grid gap-6 md:grid-cols-2">
