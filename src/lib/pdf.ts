@@ -4,7 +4,7 @@ export async function downloadQuotationPdf(element: HTMLElement, filename: strin
   const mod = await import("html2pdf.js");
   const html2pdf = (mod as { default?: unknown }).default ?? mod;
   const opt = {
-    margin: [10, 10, 10, 10],
+    margin: [4, 8, 8, 8],
     filename,
     image: { type: "jpeg", quality: 0.98 },
     html2canvas: { scale: 2, useCORS: true, letterRendering: true },

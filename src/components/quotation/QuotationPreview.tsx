@@ -50,11 +50,11 @@ export function QuotationPreview({ data, rootId = "quotation-preview-root", clas
     >
       <header className="border-b-2 border-slate-300 pb-4 text-center">
         <h1 className="text-[30px] font-bold tracking-wide">{SHREE_SALES_DETAILS.name}</h1>
-        <p className="mt-1 text-[13px] leading-relaxed text-slate-700">{SHREE_SALES_DETAILS.addressLine1}</p>
-        <p className="mt-1 text-[13px] text-slate-700">
+        <p className="mt-0.5 text-[13px] leading-tight text-slate-700">{SHREE_SALES_DETAILS.addressLine1}</p>
+        <p className="mt-0.5 text-[13px] leading-tight text-slate-700">
           Contact No: {SHREE_SALES_DETAILS.contactNo} | GST No: {gstDisplay}
         </p>
-        <div className="mt-3 flex items-center justify-center gap-2 text-[12px] text-slate-700">
+        <div className="mt-2 flex items-center justify-center gap-2 text-[12px] text-slate-700">
           {data.quotationNumber ? (
             <span className="rounded border border-slate-300 bg-slate-50 px-2 py-1">
               Quotation No: <span className="font-semibold text-slate-900">{data.quotationNumber}</span>

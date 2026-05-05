@@ -339,7 +339,7 @@ export function QuotationForm({ mode, initial, initialLineItems }: Props) {
         return;
       }
       toast.success("Quotation created");
-      router.push(`/quotation/${created.id}`);
+      router.push("/dashboard");
       router.refresh();
       return;
     }
