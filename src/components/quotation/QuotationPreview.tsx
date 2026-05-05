@@ -1,4 +1,5 @@
 import type { QuotationPreviewModel } from "@/lib/types";
+import { SHREE_SALES_DETAILS } from "@/lib/shreeSales";
 import { formatInr, quotationGrossSubtotal, quotationOtherCostsSubtotal } from "@/lib/utils";
 
 type Props = {
@@ -44,11 +45,17 @@ export function QuotationPreview({ data, rootId = "quotation-preview-root", clas
       className={`print-root rounded-lg border border-slate-200 bg-white p-8 text-slate-900 shadow-sm ${className}`}
     >
       <header className="border-b border-slate-300 pb-4 text-center">
-        <h1 className="text-2xl font-bold tracking-wide">SHREE SALES</h1>
+        <h1 className="text-2xl font-bold tracking-wide">{SHREE_SALES_DETAILS.name}</h1>
         <p className="mt-1 text-sm leading-relaxed">
-          Plot No.-TA-123, Transport Nagar, MIDC, Shivani 444001
+          {SHREE_SALES_DETAILS.addressLine1}
           <br />
-          Contact No: 7796382806
+          Contact No: {SHREE_SALES_DETAILS.contactNo}
+          {SHREE_SALES_DETAILS.gstNo && SHREE_SALES_DETAILS.gstNo !== "ADD_GST_NUMBER_HERE" ? (
+            <>
+              <br />
+              GST No: {SHREE_SALES_DETAILS.gstNo}
+            </>
+          ) : null}
         </p>
         {data.quotationNumber && (
           <p className="mt-3 text-xs text-slate-600">Quotation No: {data.quotationNumber}</p>
